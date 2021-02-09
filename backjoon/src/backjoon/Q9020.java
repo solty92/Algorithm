@@ -29,12 +29,10 @@ public class Q9020 {
 		for (int i = 0; i < testCase; i++) {
 			int goldbach = Integer.parseInt(br.readLine());
 			
-			Loop : for (int j = goldbach/2; j < numberArray.length; j++) {
-				for (int j2 = 0; j2 <= goldbach/2; j2++) {
-					if(numberArray[j] == true && numberArray[j2] == true && j + j2 == goldbach) {
-						bw.write(j2 + " " + j + "\n");
-						break Loop;
-					}
+			for (int j = goldbach/2; j < goldbach; j++) {
+				if(numberArray[j] && numberArray[goldbach - j]) {
+					bw.write(goldbach - j + " " + j + "\n");
+					break;
 				}
 			}
 			
