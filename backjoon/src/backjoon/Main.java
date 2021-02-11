@@ -5,35 +5,41 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		int[][] apt = new int[15][15];
+		String array1 = "***";
+		String array2 = "* *";
 		
-		for (int i = 0; i < apt.length; i++) {
-			apt[0][i] = i;
-			apt[i][1] = 1;
-		}
+		int inpt = Integer.parseInt(br.readLine());
+		int times = inpt/3;
 		
-		for (int i = 1; i < apt.length; i++) {
-			for (int j = 2; j < apt.length; j++) {
-				apt[i][j] = apt[i][j-1] + apt[i-1][j];
+		if(inpt == 3) {
+			bw.write(array1 + "\n");
+			bw.write(array2 + "\n");
+			bw.write(array1);
+		}else {
+			for (int j = 0; j < times; j++) {
+				
+				for (int i = 0; i < times; i++) {
+					bw.write(array1);
+				}bw.newLine();
+				for (int i = 0; i < times; i++) {
+					bw.write(array2);
+				}bw.newLine();
+				for (int i = 0; i < times; i++) {
+					bw.write(array1);
+				}bw.newLine();
 			}
 		}
 		
-		int testCase = Integer.parseInt(br.readLine());
 		
-		for (int i = 0; i < testCase ; i++) {
-			int floor = Integer.parseInt(br.readLine());
-			int roomNumber = Integer.parseInt(br.readLine());
-			
-			bw.write("" + apt[floor][roomNumber] + "\n");
-		}
 		
-		bw.flush();
+		
 		bw.close();
 		
 	}
