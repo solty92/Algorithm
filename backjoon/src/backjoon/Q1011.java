@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.math.BigInteger;
 import java.util.StringTokenizer;
 
 public class Q1011 {
@@ -31,10 +30,10 @@ public class Q1011 {
 		StringTokenizer st;
 		for (int i = 0; i < testCase; i++) {
 			st = new StringTokenizer(br.readLine());
-			BigInteger x = new BigInteger(st.nextToken());
-			BigInteger y = new BigInteger(st.nextToken());
+			int x = Integer.parseInt(st.nextToken());
+			int y = Integer.parseInt(st.nextToken());
 			
-			long length = (y.subtract(x)).longValue();
+			int length = y-x;
 			
 			int count = 0;
 			for (int j = 0; j < minusArray.length; j++) {
