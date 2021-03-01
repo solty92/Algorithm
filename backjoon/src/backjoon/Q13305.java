@@ -31,11 +31,10 @@ public class Q13305 {
 		int tmpPrice = fuelPrice[0];
 		for (int i = 0; i < fuelPrice.length -1; i++) {
 			
-			if(fuelPrice[i+1] < fuelPrice[i]) {
-				cost += tmpPrice * length[i];
+			cost += (long) tmpPrice * length[i];
+			
+			if(fuelPrice[i+1] < tmpPrice) {
 				tmpPrice = fuelPrice[i+1];
-			}else {
-				cost += tmpPrice * length[i];
 			}
 			
 		}
