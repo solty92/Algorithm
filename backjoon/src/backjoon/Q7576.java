@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -60,14 +59,17 @@ public class Q7576 {
 			}
 		}
 
-		arr.sort(Comparator.reverseOrder());
 
 		boolean isUnripeExist = arr.contains(0);
 
+		int result = 0;
 		if (isUnripeExist) {
 			bw.write(-1 + "");
 		} else {
-			bw.write(arr.get(0) - 1 + "");
+			for (int i = 0; i < arr.size(); i++) {
+				if(arr.get(i) > result) result = arr.get(i);
+			}
+			bw.write(result-1 + "");
 		}
 
 		bw.close();
