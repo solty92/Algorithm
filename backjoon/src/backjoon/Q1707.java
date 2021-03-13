@@ -51,6 +51,7 @@ public class Q1707 {
 			
 			for (int j = 1; j < connection.size(); j++) {
 				if(!isVisited[j]) bfs(j);
+				if(!result) break;
 			}
 			
 			if(result) bw.write("YES\n");
