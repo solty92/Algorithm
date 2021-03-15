@@ -78,20 +78,19 @@ public class Q1707 {
 			for (int i = 0; i < connection.get(motherVertex).size(); i++) {
 				int childVertex = connection.get(motherVertex).get(i);
 				
-				if(isVisited[childVertex] && TrueOrFalse[childVertex] == TrueOrFalse[motherVertex]) {
-					result = false;
-					return;
-				}
-				
-				if(!isVisited[childVertex]) {
+				if(isVisited[childVertex]) {
+					if(TrueOrFalse[childVertex] == TrueOrFalse[motherVertex]) {
+						result = false;
+						return;
+					}
+				}else {
 					isVisited[childVertex] = true;
 					TrueOrFalse[childVertex] = !TrueOrFalse[motherVertex];
 					q.offer(childVertex);
+					
 				}
-				
 			}
 		}
-		
 	}
 	
 }
