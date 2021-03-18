@@ -9,54 +9,41 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
-	
-	static class Place {
-		int n;
-		int m;
-		int distance;
-		boolean isDrillUsed;
-		
-		public Place(int n, int m, int distance, boolean isDrillUsed) {
-			this.n = n;
-			this.m = m;
-			this.distance = distance;
-			this.isDrillUsed = isDrillUsed;
-		}
-	}
-
-	static int N, M, result;
-	static int[][] map;
-	static boolean[][][] isVisited;	//[N][M][0] : 벽돌 안뚫은 애 방문여부, [N][M][1] : 벽돌 뚫은 애 방문여부
-	
-	static int[] nArray = {-1, 1, 0, 0};
-	static int[] mArray = {0, 0, -1, 1};
-
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-		StringTokenizer st = new StringTokenizer(br.readLine());
-
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
 		
-		map = new int[N][M];
-		isVisited = new boolean[N][M][2];
-
+		int N = Integer.parseInt(br.readLine());
+		
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int[] myCard = new int[N];
 		for (int i = 0; i < N; i++) {
-			String input = br.readLine();
-			for (int j = 0; j < M; j++) {
-				map[i][j] = Integer.parseInt(input.charAt(j) + "");
-			}
+			myCard[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		System.out.println(Arrays.deepToString(map));
-		System.out.println(Arrays.deepToString(isVisited));
+		Arrays.sort(myCard);
+		
+		int M = Integer.parseInt(br.readLine());
+		int[] result = new int[M];
+		
+		st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < M; i++) {
+			int tmp = 0;
+			int check = Integer.parseInt(st.nextToken());
+			
+			for (int j = 0; j < N; j++) {
+				if(myCard[j] == check) tmp = 1;
+			}
+			
+			result[i] = tmp;
+		}
 
+		for(int a : result) {
+			bw.write(a + " ");
+		}
+		
 		bw.close();
+
 	}
 
-	// bfs
-	public static void bfs() {
-	}
 }
