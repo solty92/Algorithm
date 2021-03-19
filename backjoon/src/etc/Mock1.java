@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 class Mock1 {
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {	// goorm ±Ù¹¬ÀÚÈæ ¹®Á¦
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
