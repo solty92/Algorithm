@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
 class Mock2 {
-	public static void main(String[] args) throws Exception {	// 사은품 교환하기
+	public static void main(String[] args) throws Exception {	// goorm 사은품 교환하기
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
