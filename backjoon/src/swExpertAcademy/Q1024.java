@@ -38,7 +38,6 @@ public class Q1024 {
 				}
 			}
 			
-			
 			bw.write("#" + currentCase + " " + score + "\n");
 		}
 		
