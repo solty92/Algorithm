@@ -32,7 +32,7 @@ public class Solution {
 			int maxApperance = 0;
 			int score = 0;
 			for (int j = 0; j < 101; j++) {
-				if(count[j] > maxApperance) {
+				if(count[j] >= maxApperance) {
 					maxApperance = count[j];
 					score = j;
 				}
