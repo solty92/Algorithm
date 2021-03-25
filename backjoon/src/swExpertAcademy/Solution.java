@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.StringTokenizer;
 
 public class Solution {
@@ -12,37 +14,25 @@ public class Solution {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		
-		int testCase = Integer.parseInt(br.readLine());
-		
+
+		int[][] arr;
 		StringTokenizer st;
-		int currentCase;
-		
-		for (int i = 0; i < testCase; i++) {
-			currentCase = Integer.parseInt(br.readLine());
-			int[] count = new int[101];
-			
+
+		for (int i = 1; i <= 10; i++) {
+			br.readLine();
+			arr = new int[100][100];
+
 			st = new StringTokenizer(br.readLine());
-			
-			while(st.hasMoreTokens()) {
-				int score = Integer.parseInt(st.nextToken());
-				count[score]++;
-			}
-			
-			int maxApperance = 0;
-			int score = 0;
-			for (int j = 0; j < 101; j++) {
-				if(count[j] >= maxApperance) {
-					maxApperance = count[j];
-					score = j;
+
+			for (int j = 0; j < arr.length; j++) {
+				for (int j2 = 0; j2 < arr.length; j2++) {
+					arr[j][j2] = Integer.parseInt(st.nextToken());
 				}
 			}
 			
-			
-			bw.write("#" + currentCase + " " + score + "\n");
+			bw.write(Arrays.toString(arr) + "\n");
 		}
-		
-		
+
 		bw.close();
 	}
 }
