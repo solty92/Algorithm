@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.StringTokenizer;
 
 public class Solution {
@@ -24,8 +23,8 @@ public class Solution {
 
 			st = new StringTokenizer(br.readLine());
 
-			for (int j = 0; j < arr.length; j++) {
-				for (int j2 = 0; j2 < arr.length; j2++) {
+			for (int j = 0; j < 100; j++) {
+				for (int j2 = 0; j2 < 100; j2++) {
 					arr[j][j2] = Integer.parseInt(st.nextToken());
 				}
 			}
