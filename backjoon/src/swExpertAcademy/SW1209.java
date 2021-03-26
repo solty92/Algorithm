@@ -66,6 +66,7 @@ public class SW1209 {
 			
 			greatestDiagonalSum = tmpDiagonalSum1 > tmpDiagonalSum2 ? tmpDiagonalSum1 : tmpDiagonalSum2;
 			
+			// 최대값 찾
 			int result = greatestRowSum;
 			result = result < greatestColumnSum ? greatestColumnSum : result;
 			result = result < greatestDiagonalSum ? greatestDiagonalSum : result;
