@@ -29,6 +29,7 @@ public class Solution {
 				}
 			}
 			
+			// 배열 출력
 			bw.write(Arrays.toString(arr) + "\n");
 		}
 
