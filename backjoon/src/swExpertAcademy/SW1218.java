@@ -36,7 +36,6 @@ public class SW1218 {
 			bw.write("#" + testCase + " " + result + "\n");
 		}
 		
-		
 		bw.close();
 	}
 	
