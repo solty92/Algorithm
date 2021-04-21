@@ -5,45 +5,52 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
+	
+	static BufferedWriter bw;
+	static int[] arr;
+	static boolean[] isUsed;
+	
+	static int N, M;
+	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		
-		int N = Integer.parseInt(br.readLine());
+		bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		int[] myCard = new int[N];
-		for (int i = 0; i < N; i++) {
-			myCard[i] = Integer.parseInt(st.nextToken());
-		}
 		
-		Arrays.sort(myCard);
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
 		
-		int M = Integer.parseInt(br.readLine());
-		int[] result = new int[M];
+		arr = new int[M+1];
+		isUsed = new boolean[N+1];
 		
-		st = new StringTokenizer(br.readLine());
-		for (int i = 0; i < M; i++) {
-			int tmp = 0;
-			int check = Integer.parseInt(st.nextToken());
-			
-			for (int j = 0; j < N; j++) {
-				if(myCard[j] == check) tmp = 1;
-			}
-			
-			result[i] = tmp;
-		}
-
-		for(int a : result) {
-			bw.write(a + " ");
-		}
+		permutation(1);
 		
+		
+	
 		bw.close();
 
 	}
-
+	
+	private static void permutation(int lvl) throws IOException {
+		
+		if(lvl > M) {
+			
+			for(int a : arr) {
+				bw.write(a + " ");
+			}
+			bw.write("\n");
+			
+			return;
+			
+		}
+		
+		for (int i = 1; i < arr.length; i++) {
+			
+		}
+		
+	}
 }
