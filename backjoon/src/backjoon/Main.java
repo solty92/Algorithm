@@ -5,154 +5,49 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
-import java.util.StringTokenizer;
 
 public class Main {
 	
-	static int[] arr;
-	static int lvl;
-	static BufferedWriter bw;
+	static int numbOfCase;
+	static int N;
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
-		int K = Integer.parseInt(st.nextToken());
-		
-		lvl = 0;
-		while(N > Math.pow(2, lvl)) {
+		while(true) {
+			N = Integer.parseInt(br.readLine());
 			
-			lvl++;
+			numbOfCase = 0;
 			
+			findCase(N, 0);
+			
+			bw.write(numbOfCase + "\n");
+			
+			if(N == 0) break;
 		}
-		
-		int childeNodes = (int) Math.pow(2, lvl);
-		arr = new int[childeNodes * 2];
-		
-		for (int i = childeNodes; i < childeNodes + N; i++) {
-			arr[i] = Integer.parseInt(br.readLine());
-		}
-		
-//		System.out.println(Arrays.toString(arr));
-		
-		
-		
-		// 조상 노드 채우기
-		int tmpLvl = lvl;
-		while(tmpLvl > 0) {
-			
-			for (int i = (int) Math.pow(2, tmpLvl); i < (int) Math.pow(2, tmpLvl) * 2; i += 2) {
-				
-				arr[i/2] = arr[i] + arr[i+1];
-				
-			}
-			
-			tmpLvl--;
-		}
-		
-//		System.out.println(Arrays.toString(arr));
-		
-		for (int i = 0; i < M+K; i++) {
-			
-			st = new StringTokenizer(br.readLine());
-			
-			int which = Integer.parseInt(st.nextToken());
-			int a = Integer.parseInt(st.nextToken());
-			int b = Integer.parseInt(st.nextToken());
-			
-			if(which == 1) change(a - 1 + childeNodes, b);
-			else sum(a - 1 + childeNodes, b - 1 + childeNodes);
-			
-		}
-		
-//		System.out.println(Arrays.toString(arr));
-		
 		
 		bw.close();
 	}
-	
-	private static void change(int changeThis, int toThis) {
-		
-		int difference = toThis - arr[changeThis];
-		arr[changeThis] = toThis;
-		
-		int tmpLvl = lvl;
-		
-		while(tmpLvl > 0) {
-			
-			if(changeThis % 2 == 0) {
-				changeThis /= 2;
-				arr[changeThis] += difference;
-			}else {
-				changeThis -= 1;
-				changeThis /= 2;
-				arr[changeThis] += difference;
-			}
-			
-			tmpLvl--;
-			
-		}
-		
-	}
-	
-	private static void sum(int from, int to) throws IOException {
-		
-		int result = 0;
-		
-		if(from == to) {
-			bw.write(arr[from] + "\n");
+
+	private static void findCase(int possibleW, int possibleH) {
+
+		if(possibleW == 0) {
+			numbOfCase++;
 			return;
 		}
 		
-		if(from % 2 != 0) {
-			result += arr[from];
-			from++;
-		}
-		
-		if(to % 2 == 0) {
-			result += arr[to];
-			to--;
-		}
-		
-		int leftIdx = from;
-		int rightIdx = to;
-		
-		while(leftIdx < rightIdx) {
-			
-			if(leftIdx % 2 == 0) {
-				leftIdx /= 2;
-			}else {
-				result += arr[leftIdx];
-				leftIdx++;
-				
-				leftIdx /= 2;
-			}
-			
-			if(rightIdx % 2 != 0) {
-				rightIdx--;
-				rightIdx /= 2;
-			}else {
-				result += arr[rightIdx];
-				rightIdx -= 2;
-				
-				rightIdx /= 2;
-			}
-		}
-		
-		if(leftIdx == rightIdx) {
-			result += arr[leftIdx];
-			bw.write(result + "\n");
+		//	반쪽 알약 없으면 무조건 하나를 반으로 쪼갠다 
+		if(possibleH == 0) {
+			findCase(possibleW - 1, possibleH + 1);
 		}else {
-			bw.write(result + "\n");
+			// 반쪽 알약이 존재할 경우엔 하나를 반으로 쪼개거나 반쪽짜리를 먹거나 
+			findCase(possibleW - 1, possibleH + 1);
+			findCase(possibleW, possibleH - 1);
 		}
-		
 		
 		
 	}
+	
 }
