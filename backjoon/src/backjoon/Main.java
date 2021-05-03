@@ -5,49 +5,57 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
 
 public class Main {
 	
-	static int numbOfCase;
+	static int[] arr;
 	static int N;
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+		N = Integer.parseInt(br.readLine());
 		
-		while(true) {
-			N = Integer.parseInt(br.readLine());
-			
-			numbOfCase = 0;
-			
-			findCase(N, 0);
-			
-			bw.write(numbOfCase + "\n");
-			
-			if(N == 0) break;
+		arr = new int[N+1];
+		
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		for (int i = 1; i <= N; i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
 		}
+		
+		int result = price();
+		
+		bw.write(result + "");
 		
 		bw.close();
 	}
 
-	private static void findCase(int possibleW, int possibleH) {
-
-		if(possibleW == 0) {
-			numbOfCase++;
-			return;
+	private static int price() {
+		
+		// 가장 비싼 카드팩 찾기 
+		int mostExpensiveIdx = 0;
+		double perPrice = 0;
+		for (int i = 1; i <= N; i++) {
+			
+			if((double) arr[i]/i > perPrice) {
+				perPrice = (double) arr[i]/i ;
+				mostExpensiveIdx = i;
+			}
+			
 		}
 		
-		//	반쪽 알약 없으면 무조건 하나를 반으로 쪼갠다 
-		if(possibleH == 0) {
-			findCase(possibleW - 1, possibleH + 1);
+		if(N % mostExpensiveIdx == 0) {
+			return ( N / mostExpensiveIdx) * arr[mostExpensiveIdx];
 		}else {
-			// 반쪽 알약이 존재할 경우엔 하나를 반으로 쪼개거나 반쪽짜리를 먹거나 
-			findCase(possibleW - 1, possibleH + 1);
-			findCase(possibleW, possibleH - 1);
+			int tmp = ( N / mostExpensiveIdx) * arr[mostExpensiveIdx];
+			tmp += arr[( N % mostExpensiveIdx )] * ( N % mostExpensiveIdx );
+			
+			return tmp;
 		}
-		
 		
 	}
-	
 }
