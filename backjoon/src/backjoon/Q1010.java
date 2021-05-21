@@ -18,7 +18,6 @@ public class Q1010 {
 
 		int tc = Integer.parseInt(br.readLine());
 		
-		
 		StringTokenizer st;
 		for (int i = 0; i < tc; i++) {
 			st = new StringTokenizer(br.readLine());
