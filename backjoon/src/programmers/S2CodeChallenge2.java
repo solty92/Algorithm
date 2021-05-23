@@ -1,8 +1,8 @@
-package etc;
+package programmers;
 
 import java.util.Stack;
 
-public class CodeChallenge2 {
+public class S2CodeChallenge2 {
 	
 	public static int solution(String s) {
         StringBuffer sb = new StringBuffer(s);

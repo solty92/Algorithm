@@ -1,6 +1,6 @@
-package etc;
+package programmers;
 
-class CodeChallenge5 {
+class S2CodeChallenge5 {
     public int solution(int left, int right) {
         int answer = 0;
         

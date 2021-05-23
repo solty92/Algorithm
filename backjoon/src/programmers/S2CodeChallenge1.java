@@ -1,8 +1,8 @@
-package etc;
+package programmers;
 
 import java.util.Stack;
 
-public class CodeChallenge1 {
+public class S2CodeChallenge1 {
 	
 	public int solution(int[] absolutes, boolean[] signs) {
         int answer = 0;

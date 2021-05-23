@@ -1,6 +1,6 @@
-package etc;
+package programmers;
 
-class CodeChallenge6 {
+class S2CodeChallenge6 {
 	
 	static StringBuffer binarySt;
 	
