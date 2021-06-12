@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -14,21 +13,20 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-		int N = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		StringTokenizer st;
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+		int K = Integer.parseInt(st.nextToken());
 		
-		int[][] arr = new int[N][2];
+		int possibleN = N / 2;
+		int possibleM = M;
 		
-		for (int i = 0; i < N; i++) {
-			st = new StringTokenizer(br.readLine());
-			
-			arr[i][0] = Integer.parseInt(st.nextToken());
-			arr[i][1] = Integer.parseInt(st.nextToken());
-		}
+		int maxTeamCount = possibleN < possibleM ? possibleN : possibleM;
 		
-		bw.write(Arrays.deepToString(arr));
-		
+		System.out.println(possibleN);
+		System.out.println(possibleM);
+		System.out.println(maxTeamCount);
 		
 		bw.close();
 	}
