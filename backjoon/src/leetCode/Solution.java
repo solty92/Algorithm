@@ -1,47 +1,38 @@
 package leetCode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class Solution {
-    public List<String> wordSubsets(String[] words1, String[] words2) {
-        
-    	boolean isUniversal;
-    	List<String> list = new ArrayList<String>();
+    public int maxSideLength(int[][] mat, int threshold) {
     	
-    	for(String a : words1) {
-    		isUniversal = true;
+    	int ans = 0;
+    	
+    	int x = mat[0].length;
+    	int y = mat.length;
+    	
+    	int maxSideLength = x < y ? x : y;
+
+    	while(maxSideLength > 0) {
     		
-    		for(String b : words2) {
-    			
-    			isUniversal = subsetCheck(a, b);
-    			if(!isUniversal) break;
-    		}
+    		for (int row = 0; row <= y - maxSideLength; row++) {
+				
+    			for (int col = 0; col <= x - maxSideLength; col++) {
+					
+    				
+    				
+				}
+			}
     		
-    		if(isUniversal) {
-    			list.add(a);
-    		}
+    		maxSideLength--;
     	}
     	
-    	return list;
+    	return ans;
+        
     }
-
-	private boolean subsetCheck(String a, String b) {
-
-		StringBuffer sb = new StringBuffer(a);
+    
+    public static void main(String[] args) {
+		Solution sol = new Solution();
 		
-		char c;
-		int tmp;
-		for (int i = 0; i < b.length(); i++) {
-			c = b.charAt(i);
-			
-			tmp = sb.indexOf(c + "");
-			if(tmp != -1) {
-				sb.deleteCharAt(tmp);
-			}else return false;
-		}
+		int[][] mat = {{1,1,1,1},{1,0,0,0},{1,0,0,0},{1,0,0,0},{1,0,0,0}};
 		
-		return true;
+		sol.maxSideLength(mat, 6);
 	}
-
 }
