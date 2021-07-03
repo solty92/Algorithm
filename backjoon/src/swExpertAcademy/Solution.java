@@ -5,55 +5,129 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Solution {
+	
+	static int[] arr;
+	static int lvl;
+	static BufferedWriter bw;
+	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		
-
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		int testCaseCount = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		StringTokenizer st;
-		for (int testCase = 0; testCase < testCaseCount; testCase++) {
-			int stickCount = Integer.parseInt(br.readLine());
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+		int K = Integer.parseInt(st.nextToken());
+		
+		lvl = 0;
+		while(N > Math.pow(2, lvl)) {
 			
-			ArrayList<int[]> stickArr = new ArrayList<int[]>();
+			lvl++;
+			
+		}
+		
+		int childeNodes = (int) Math.pow(2, lvl);
+		arr = new int[childeNodes * 2];
+		
+		for (int i = childeNodes; i < childeNodes + N; i++) {
+			arr[i] = Integer.parseInt(br.readLine());
+		}
+		
+		System.out.println(Arrays.toString(arr));
+		
+		
+		
+		// 조상 노드 채우기
+		int tmpLvl = lvl;
+		while(tmpLvl > 0) {
+			
+			for (int i = (int) Math.pow(2, tmpLvl); i < (int) Math.pow(2, tmpLvl) * 2; i += 2) {
+				
+				arr[i/2] = arr[i] + arr[i+1];
+				
+			}
+			
+			tmpLvl--;
+		}
+		
+		System.out.println(Arrays.toString(arr));
+		
+		for (int i = 0; i < M+K; i++) {
 			
 			st = new StringTokenizer(br.readLine());
 			
-			for (int i = 0; i < stickCount; i++) {
-				stickArr.add(new int[]{Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())});
-			}
+			int which = Integer.parseInt(st.nextToken());
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
 			
-			ArrayList<int[]> resultArr = new ArrayList<int[]>();
+			if(which == 1) change(a - 1 + childeNodes, b);
+			else sum(a - 1 + childeNodes, b - 1 + childeNodes);
 			
-			// 막대기 하나를 배열에 넣고 앞에 갈 수 있는 막대기들을 찾는다.
-			resultArr.add(stickArr.get(0));
-			stickArr.remove(0);
-			boolean isExist = true;
-			while(isExist) {
-				
-				int[] tmpResult = resultArr.get(0);
-				for (int i = 0; i < stickArr.size(); i++) {
-					
-					int[] tmp = stickArr.get(i);
-					
-					if(tmp[1] == tmpResult[0]) {
-						resultArr.add(0, tmp);
-						stickArr.remove(i);
-						break;
-					}
-				}
-				
-			}
 		}
+		
+		System.out.println(Arrays.toString(arr));
 		
 		
 		bw.close();
+	}
+	
+	private static void change(int changeThis, int toThis) {
+		
+		int difference = toThis - arr[changeThis];
+		arr[changeThis] = toThis;
+		
+		int tmpLvl = lvl;
+		
+		while(tmpLvl > 0) {
+			
+			if(changeThis % 2 == 0) {
+				changeThis /= 2;
+				arr[changeThis] += difference;
+			}else {
+				changeThis -= 1;
+				changeThis /= 2;
+				arr[changeThis] += difference;
+			}
+			
+			tmpLvl--;
+			
+		}
+		
+	}
+	
+	private static void sum(int from, int to) throws IOException {
+		
+		int result = 0;
+		
+		if(from == to) {
+			bw.write(arr[from] + "\n");
+			return;
+		}
+		
+		if(from % 2 != 0) {
+			result += arr[from];
+			from++;
+		}
+		
+		if(to % 2 == 0) {
+			result += arr[to];
+			to--;
+		}
+		
+		int leftIdx = from;
+		int rightIdx = to;
+		
+		while(leftIdx < rightIdx) {
+			
+		}
+		
+		
+		
 	}
 }
