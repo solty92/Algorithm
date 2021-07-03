@@ -1,41 +1,40 @@
 package leetCode;
 
 class Solution {
-    public int maxSideLength(int[][] mat, int threshold) {
-    	
-    	int x = mat[0].length;
-    	int y = mat.length;
-    	
-    	int maxSideLength = x < y ? x : y;
-
-    	loop : while(maxSideLength > 0) {
-    		for (int row = 0; row <= y - maxSideLength; row++) {
-				
-    			for (int col = 0; col <= x - maxSideLength; col++) {
-					
-    				if(squareSum(row, col, maxSideLength, mat, threshold)) break loop;
-    				
-				}
-			}
-    		
-    		maxSideLength--;
-    	}
-
-    	return maxSideLength;
+	
+	static int[] alphArr;
+	static int ans;
+	
+    public int numTilePossibilities(String tiles) {
         
+    	int maxRank = tiles.length();
+    	
+    	alphArr = new int[26];
+    	
+    	// 알파벳 개수 카운트 
+    	for (int i = 0; i < maxRank; i++) {
+			alphArr[tiles.charAt(i) - 'A']++;
+		}
+
+    	ans = 0;
+    	
+    	bt();
+    	
+    	return ans;
     }
     
-    private boolean squareSum(int row, int col, int maxSideLength, int[][] mat, int threshold) {
-
-    	int sum = 0;
+    private void bt() {
     	
-    	for (int y = row; y < row + maxSideLength; y++) {
-			for (int x = col; x < col + maxSideLength; x++) {
-				sum += mat[y][x];
-				if(sum > threshold) return false;
-			}
+    	for (int i = 0; i < alphArr.length; i++) {
+			
+    		if(alphArr[i] > 0) {
+    			alphArr[i]--;
+    			ans++;
+    			bt();
+    			alphArr[i]++;
+    		}
 		}
-    	
-    	return true;
+
+		
 	}
 }
